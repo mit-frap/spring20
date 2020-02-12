@@ -5,8 +5,6 @@ Require Import Coq.Lists.List. Import ListNotations.
 Require Import Coq.micromega.Lia.
 Require Import Frap.Frap.
 
-Set Default Goal Selector "!".
-
 (* These few lines test whether you have updated the frap submodule. *)
 Goal forall (n: N), N.recursion 0 (fun k rec => k * rec) (1 + n) =
                     N.recursion 0 (fun k rec => k * rec) (n + 1).

@@ -34,6 +34,7 @@ Require Import Coq.Lists.List. Import ListNotations.
 Require Import Coq.micromega.Lia.
 Require Import Frap.Frap.
 Require Import Pset2Sig.
+Set Default Goal Selector "!".
 
 (* Each of the exercises below is worth some number of points.
    If you just want to enjoy the proof hacking without getting distracted by points,
