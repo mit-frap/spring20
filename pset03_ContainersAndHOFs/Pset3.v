@@ -78,7 +78,7 @@ Admitted.
  * the list if the list is nonempty, and [None]
  * if the list is empty.
  *)
-Fixpoint head {A} (xs : list A) : option A. Admitted.
+Definition head {A} (xs : list A) : option A. Admitted.
 
 Example head_example : head [1; 2; 3] = Some 1.
 Proof.
