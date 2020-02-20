@@ -208,19 +208,20 @@ Definition compose {A B C : Type} (g : B -> C) (f : A -> B) (x : A) : C := g (f 
    in your definitions, or whether you prefer to write "compose". *)
 Notation " g ∘ f " := (compose g f) (at level 40, left associativity).
 
-(* Here are three simple properties of function composition.
-   If you defined function composition correctly above, all of them can be proven
-   by just [Proof. simplify. equality. Qed.] *)
+(* Here are three simple properties of function composition. *)
 Lemma compose_id_l : forall A B (f: A -> B),
     id ∘ f = f.
+Proof.
 Admitted.
 
 Lemma compose_id_r : forall A B (f: A -> B),
     f ∘ id = f.
+Proof.
 Admitted.
 
 Lemma compose_assoc : forall A B C D (f: A -> B) (g: B -> C) (h: C -> D),
     h ∘ (g ∘ f) = h ∘ g ∘ f.
+Proof.
 Admitted.
 
 (* The selfCompose function takes a function and applies this function n times
