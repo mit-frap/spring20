@@ -13,7 +13,13 @@ Set Default Goal Selector "!".
    simple imperative language we used in Chapter 4 (Interpreters.v) and
    Chapter 7 (OperationalSemantics.v).
    Make sure to re-read these two files, because many definitions we ask you
-   to come up with in this pset are similar to definitions in these two files. *)
+   to come up with in this pset are similar to definitions in these two files.
+
+   Pset5Sig.v contains the number of points you get for each definition and
+   proof. Note that since we ask you to come up with some definitions
+   yourself, all proofs being accepted by Coq does not necessarily guarantee a
+   full score: You also need to make sure that your definitions correspond to
+   what we ask for in the instructions. *)
 
 (* Our language has arithmetic expressions (note that we removed Times and Minus,
    because they don't add anything interesting for this pset): *)
