@@ -1,3 +1,4 @@
+-Q . ""
 -R ../frap Frap
 Pset4Sig.v
 Pset4.v
