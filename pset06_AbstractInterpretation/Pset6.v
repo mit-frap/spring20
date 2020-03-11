@@ -1,6 +1,6 @@
 (** * 6.822 Formal Reasoning About Programs, Spring 2020 - Pset 6 *)
 
-(* In this pset will use abstract interpretation results to enable
+(* In this pset, you will use abstract-interpretation results to enable
  * optimizations in programs:
  * (1) Develop and verify an analysis that just tracks known constant values
  *     for variables.
@@ -63,8 +63,8 @@ Definition compatible a (s : astate a) (v : valuation) : Prop :=
                             /\ a.(Represents) n xa. *)
 
 (* Depending on how you approach [constant_sound], this
-* lemma may or may not be useful. Regardless, it is used in our proof of
-  [optimize_program_ok] below. *)
+ * lemma may or may not be useful. Regardless, it is used in our proof of
+ * [optimize_program_ok] below. *)
 (* from frap/AbstractInterpret.v:
 Definition subsumed a (s1 s2 : astate a) :=
   forall x, match s1 $? x with
@@ -94,7 +94,7 @@ Proof.
 
   (* As a convenience, here are some examples of how to
    * combine tactics using repeat-match-progress. These are not particularly
-   * useful for this goal, just a reference for proof scripting syntax. *)
+   * useful for this goal, just a reference for proof-scripting syntax. *)
 
   all:
     repeat match goal with
@@ -120,9 +120,9 @@ Admitted.
  * expression: *)
 (* copy-pasted from sig file:
 Inductive constfold_result :=
-| Known (n : nat)     (* The variable is exactly [n]. *)
+| Known (n : nat)        (* The variable is exactly [n]. *)
 | Simplified (e : arith) (* I don't know the exact value, but it's the same as this
-                       * (potentially simplified) expression [e]. *).
+                          * (potentially simplified) expression [e]. *).
 *)
 
 (* It's easy to convert a result back into a normal expression. *)
@@ -191,10 +191,11 @@ Fixpoint constfold_cmd (c : cmd) (ss : astates constant_absint) (C : cmd -> cmd)
 
 Definition compatible_throughout_steps {A} ss v c:= forall c' s v',
   ss $? c' = Some s -> step^* (v, c) (v', c') -> @compatible A s v'.
-(* This line makes [eauto] treat [compatible_throughout_steps] as was inlined:*)
+(* This line makes [eauto] treat [compatible_throughout_steps] as inlined: *)
 Hint Unfold compatible_throughout_steps : core.
 
 
+(* Prove: any sequence of small steps can be replicated with the optimized command. *)
 Lemma constfold_steps : forall v c v' c',
   step^* (v, c) (v', c') ->
   forall ss, compatible_throughout_steps ss v c ->
@@ -203,6 +204,7 @@ Lemma constfold_steps : forall v c v' c',
 Proof.
 Admitted.
 
+(* Prove: any full program execution can be replicated with the optimized program. *)
 Lemma eval_constfold : forall v c v',
   eval v c v' ->
   forall ss, compatible_throughout_steps ss v c ->
@@ -210,7 +212,7 @@ Lemma eval_constfold : forall v c v',
 Proof.
 Admitted.
 
-(* This lemma connects the previous to the [invariantFor] goal FRAP abstract interpretation machinery proves. *)
+(* This lemma connects the previous to the [invariantFor] goal that FRAP abstract-interpretation machinery proves. *)
 Lemma optimize_program_ok : forall v c v' ss,
   eval v c v'
   -> invariantFor (absint_trsys constant_absint c)
@@ -269,7 +271,7 @@ Proof.
 Qed.
 Hint Resolve merge_astates_fok_constant merge_astates_fok2_constant : core.
 
-(* This part takes ~3GB of RAM and 10 minutes on a laptop. *)
+(* This part takes ~3GB of RAM and 10 minutes on the laptop we tested with. *)
 (*
 Lemma loopsy_optimized_properly : forall v v',
   eval v loopsy v'
