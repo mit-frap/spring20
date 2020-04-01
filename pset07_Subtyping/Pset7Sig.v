@@ -98,7 +98,7 @@ Module Type S.
       subtype (Fun t1' t2') (Fun t1 t2)
   | StTupleNilNil :
       subtype TupleTypeNil TupleTypeNil
-  | StTupeNilCons : forall t1 t2,
+  | StTupleNilCons : forall t1 t2,
       subtype (TupleTypeCons t1 t2) TupleTypeNil
   | StTupleCons : forall t1' t2' t1 t2,
       subtype t1' t1 ->

@@ -150,7 +150,7 @@ Inductive subtype : type -> type -> Prop :=
 (* However, a nonempty tuple type is also a subtype of the empty tuple type.
  * This rule gives rise to *width* subtyping, where we can drop some fields of
  * a tuple type to produce a subtype. *)
-| StTupeNilCons : forall t1 t2,
+| StTupleNilCons : forall t1 t2,
     subtype (TupleTypeCons t1 t2) TupleTypeNil
 
 (* We also have *depth* subtyping: we can replace tuple components with
