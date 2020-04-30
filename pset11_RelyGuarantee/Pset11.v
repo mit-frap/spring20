@@ -107,7 +107,7 @@ Lemma HtWeakenFancy : forall {t : Set} P R c G Q (G' : hrel) (Q' : t -> hprop),
     -> (forall v h, Q v h -> Q' v h)
     -> (forall h h', G h h' -> G' h h')
     -> hoare_triple P R c G' Q'.
-Proof. eauto. Qed.
+Proof. eauto using always_stableP. Qed.
 
 Lemma HtReturn' : forall {t : Set} (P : hprop) (R G : hrel) (Q : _ -> hprop) (v : t),
     stableP P R

@@ -186,13 +186,13 @@ Hint Constructors hoare_triple : core.
 Lemma always_stableP : forall (t : Set) P R c G (Q : t -> _),
     hoare_triple P R c G Q -> stableP P R.
 Proof. induct 1; unfold stableP in *; first_order. Qed.
-Hint Resolve always_stableP : core.
+(* (* do not do this, makes eauto slow *) Hint Resolve always_stableP : core. *)
 Lemma HtWeakenFancy : forall {t : Set} P R c G Q (G' : hrel) (Q' : t -> hprop),
     hoare_triple P R c G Q ->
     (forall v h, Q v h -> Q' v h) ->
     (forall h h', G h h' -> G' h h') ->
     hoare_triple P R c G' Q'.
-Proof. eauto. Qed.
+Proof. eauto using always_stableP. Qed.
 
 (* The usual step and simplification tactics: *)
 

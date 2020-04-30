@@ -52,7 +52,7 @@ Lemma HtWeaken : forall {t : Set} P R c G Q (Q' : t -> hprop),
     -> (forall v h, Q v h -> Q' v h)
     -> hoare_triple P R c G Q'.
 Proof.
-  eauto.
+  eauto using always_stableP.
 Qed.
 
 (* The first several tactics are similar to those that we have
