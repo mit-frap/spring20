@@ -246,8 +246,23 @@ Ltac t_step :=
 
 Ltac t := repeat t_step.
 
-
-
 Theorem balanced_handler_correct : correctness.
+Proof.
+Admitted.
+
+(* OPTIONAL exercise (ungraded, very short):
+   Another important property of refinment is that any subpart of a larger
+   program can be replaced with a refined version of it, yielding a refined
+   version of the larger program. You can try it out by wrapping our one-shot
+   server in Dup and using the "impl <| spec" fact you proved as a part of
+   the last theorem to show "Dup impl <| Dup spec". This should be trivial
+   once you have found the appropariate lemma from frap and factored out the
+   appropriate refinement claim from the last proof. *)
+Lemma multicorrectness : forall full_store even_store odd_store input output,
+  split_store full_store even_store odd_store ->
+  input <> output ->
+  forall trace,
+    couldGenerate (Dup (balanced_handler even_store odd_store input output)) trace ->
+    couldGenerate (Dup (request_handler full_store input output)) trace.
 Proof.
 Admitted.
